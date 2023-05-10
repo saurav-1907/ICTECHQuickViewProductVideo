@@ -15,14 +15,7 @@ class MediaExtension extends EntityExtension
 {
     public function extendFields(FieldCollection $collection): void
     {
-        $collection->add(
-            (new OneToManyAssociationField(
-                'productOverviewVideo',
-                ProductOverviewVideoDefinition::class,
-                'media_id',
-                'id')
-            )->addFlags(new CascadeDelete(), new Inherited())
-        );
+        $collection->add((new OneToManyAssociationField('productOverviewVideo', ProductOverviewVideoDefinition::class, 'media_id', 'id'))->addFlags(new CascadeDelete(), new Inherited()));
     }
 
     public function getDefinitionClass(): string

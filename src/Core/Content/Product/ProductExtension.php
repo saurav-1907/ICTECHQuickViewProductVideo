@@ -13,7 +13,7 @@ class ProductExtension extends EntityExtension
 {
     public function extendFields(FieldCollection $collection): void
     {
-        $collection->add((new ManyToOneAssociationField('productOverviewVideo','id',ProductOverviewVideoDefinition::class,'product_id'))->addFlags(new CascadeDelete()));
+        $collection->add((new ManyToOneAssociationField('productOverviewVideo', 'id', ProductOverviewVideoDefinition::class, 'product_id'))->addFlags(new CascadeDelete()));
     }
 
     public function getDefinitionClass(): string
