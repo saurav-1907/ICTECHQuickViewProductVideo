@@ -16,8 +16,7 @@ class ProductPageSubscriber implements EventSubscriberInterface
         EntityRepositoryInterface $mediaFolderRepository,
         EntityRepositoryInterface $mediaRepository,
         EntityRepositoryInterface $ictMediaRedirectRepository
-    )
-    {
+    ) {
         $this->mediaFolderRepository =  $mediaFolderRepository;
         $this->mediaRepository =  $mediaRepository;
         $this->ictMediaRedirectRepository =  $ictMediaRedirectRepository;

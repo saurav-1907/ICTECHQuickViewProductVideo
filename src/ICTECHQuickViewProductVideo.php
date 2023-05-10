@@ -60,4 +60,3 @@ class ICTECHQuickViewProductVideo extends Plugin
         );
     }
 }
-

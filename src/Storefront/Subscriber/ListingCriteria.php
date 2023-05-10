@@ -19,8 +19,7 @@ class ListingCriteria implements EventSubscriberInterface
         EntityRepositoryInterface $mediaFolderRepository,
         EntityRepositoryInterface $mediaRepository,
         EntityRepositoryInterface $productsQuickViewVideoRepository
-    )
-    {
+    ) {
         $this->mediaFolderRepository =  $mediaFolderRepository;
         $this->mediaRepository =  $mediaRepository;
         $this->productsQuickViewVideoRepository =  $productsQuickViewVideoRepository;
@@ -34,14 +33,11 @@ class ListingCriteria implements EventSubscriberInterface
         ];
     }
 
-
     public function handleListingRequest(ProductListingCriteriaEvent $event): void
     {
         $event->getCriteria()->addAssociation('productOverviewVideo');
         $event->getCriteria()->addAssociation('media');
         $event->getCriteria()->getAssociation('productOverviewVideo')->addAssociation('media');
-
-
     }
     public function onProductListingCriteria(ProductListingResultEvent $productListingCriteriaEvent)
     {
@@ -57,5 +53,4 @@ class ListingCriteria implements EventSubscriberInterface
         $criteria->addAssociation('media');
         return $this->productsQuickViewVideoRepository->search($criteria, Context::createDefaultContext())->getElements();
     }
-
 }
