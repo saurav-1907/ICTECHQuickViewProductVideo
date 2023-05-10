@@ -1,0 +1,47 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-image-gallery.html.twig' %}
+
+{% block element_image_gallery %}
+    {{ parent() }}
+
+    {% set active = config('ICTECHQuickViewProductVideo.config.active') %}
+    {% set quickViewVideoPDP = config('ICTECHQuickViewProductVideo.config.productdetailpage') %}
+    {% if quickViewVideoPDP == 'rightTop' %}
+        {% set overVideoButton = 'rightTop' %}
+    {% elseif quickViewVideoPDP == 'leftTop' %}
+        {% set overVideoButton = 'leftTop' %}
+    {% elseif quickViewVideoPDP == 'leftBottom' %}
+        {% set overVideoButton = 'leftBottom' %}
+    {% elseif quickViewVideoPDP == 'rightBottom' %}
+        {% set overVideoButton = 'rightBottom' %}
+    {% endif %}
+    {% set quickViewVideoPDPActivate = config('ICTECHQuickViewProductVideo.config.productdetailpageActive') %}
+    {% set video = page.product.extensions.productOverviewVideo.media.url %}
+    {% if active == "true" and  video != null   %}
+        <!-- Button trigger modal -->
+        <div class="quick-view-video{{ overVideoButton }}">
+            <button type="button" data-toggle="modal" data-target="#exampleModal"  class="btn btn-primary quickviewvideo {{ overVideoButton }}" id="quickviewvideo" name="quickviewvideo" value="quickviewvideo"
+                    select-video-button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16"> <path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/> </svg>
+            </button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content productquickviewvideo">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="videoShowModal">
+                            <video controls src="{{ page.product.extensions.ProductOverviewVideo.media.url }}" class="mt-4 quickviewvideoModel" >
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

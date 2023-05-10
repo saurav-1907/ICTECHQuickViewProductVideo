@@ -1,0 +1,34 @@
+<!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+{% block sw_product_media_form_grid %}
+    {% parent %}
+    <sw-card
+        class="" :title="$tc('quickview-product.video.cardTitle')" :isLoading="isLoading">
+        <sw-upload-listener
+            :upload-tag="mediaUploadTag"
+            auto-upload
+            @media-upload-finish="setMediaItem">
+        </sw-upload-listener>
+
+        <sw-media-upload-v2
+            :allow-multi-select="false"
+            variant="regular"
+            :upload-tag="mediaUploadTag"
+            :file-accept="fileAccept"
+            :default-folder="overViewVideoRepository.entityName"
+            :source="quickViewProductVideo"
+            :label="$t('quickview-product.video.productVideo')"
+            @media-upload-sidebar-open="showMediaModal = true"
+            @media-upload-remove-image="onUnlinkLogo">
+        </sw-media-upload-v2>
+
+        {% block sw_product_detail_menu_media_modal %}
+            <sw-media-modal-v2
+                v-if="showMediaModal"
+                :allow-multi-select="false"
+                :entity-context="product.getEntityName()"
+                @media-modal-selection-change="onMediaSelectionChange"
+                @modal-close="showMediaModal = false"
+            />
+        {% endblock %}
+    </sw-card>
+{% endblock %}

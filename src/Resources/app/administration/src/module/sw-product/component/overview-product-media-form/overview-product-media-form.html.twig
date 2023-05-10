@@ -1,0 +1,73 @@
+<!-- eslint-disable-next-line sw-deprecation-rules/no-twigjs-blocks -->
+{% block sw_product_media_form_grid %}
+    {% parent %}
+    <sw-card
+        class="" :title="$tc('quickview-product.video.cardTitle')" :isLoading="isLoading">
+        {#<sw-upload-listener
+            v-if="!isLoading"
+            :upload-tag="mediaUploadTag"
+            auto-upload
+            @media-upload-finish="setMediaItem">
+        </sw-upload-listener>
+
+        <sw-media-upload-v2
+            v-if="!isLoading && acl.can('product.editor')"
+            :allow-multi-select="false"
+            variant="regular"
+            :upload-tag="mediaUploadTag"
+            :file-accept="fileAccept"
+            :default-folder="overViewVideoRepository.getEntityName"
+            :source="quickViewProductVideo"
+            :label="$t('quickview-product.video.productVideo')"
+            @media-upload-sidebar-open="showMediaModal = true"
+            @media-upload-remove-image="onUnlinkLogo">
+        </sw-media-upload-v2>#}
+
+      {# <sw-upload-listener
+        :upload-tag="mediaUploadTag"
+        auto-upload
+        @media-upload-finish="setMediaItem"></sw-upload-listener>
+        <sw-media-upload-v2
+            class="sw-product-detail__logo-upload"
+            :source="product.mediaId"
+            :allow-multi-select="false"
+            variant="regular"
+            :upload-tag="mediaUploadTag"
+            :label="$tc('sw-product.detail.labelLogo')"
+            :default-folder="product.entityName"
+            #}{#:disabled="!acl.can('product_manufacturer.editor')"#}{#
+            @sw-media-upload-v2-media-upload-success="setMediaItem"
+            @media-drop="onDropMedia"
+            @media-upload-sidebar-open="openMediaSidebar"
+            @media-upload-remove-image="onUnlinkLogo"
+        />#}
+
+        <sw-upload-listener
+            v-if="!isLoading"
+            :upload-tag="product.id"
+            auto-upload
+            @media-upload-finish="successfulUpload"
+            @media-upload-fail="onUploadFailed" />
+
+        <sw-media-upload-v2
+            v-if="!isLoading && acl.can('product.editor')"
+            variant="regular"
+            :upload-tag="product.id"
+            :scroll-target="$parent.$el"
+            :default-folder="product.entityName"
+            {# file-accept="image/*,video/*" #}
+            {# Temporary fix for NEXT-22952 #}
+            file-accept="video/*"
+            @media-upload-sidebar-open="onOpenMedia" />
+
+        {% block sw_product_detail_menu_media_modal %}
+            <sw-media-modal-v2
+                v-if="showMediaModal"
+                :allow-multi-select="false"
+                :entity-context="product.entityName"
+                @media-modal-selection-change="onMediaSelectionChange"
+                @modal-close="showMediaModal = false"
+            />
+        {% endblock %}
+    </sw-card>
+{% endblock %}

@@ -1,0 +1,9 @@
+{
+    "quickview-product": {
+            "video": {
+                "cardTitle" :"Upload Product Video",
+                "productVideo":"Upload Video",
+                "successTitle": "Success"
+            }
+    }
+}

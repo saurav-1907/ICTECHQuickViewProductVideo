@@ -1,0 +1,89 @@
+.productquickviewvideo {
+    width:800px;
+}
+.productquickviewvideoListing {
+    width:800px;
+}
+.quickviewvideoModel {
+    width:768px;
+}
+.quickviewvideoModelListing {
+    width:768px;
+}
+
+.videoShowModal {
+    width:100%
+}
+.videoShowModalListing {
+    width:100%
+}
+.listingProductVideo {
+    display: flex;
+    justify-content: space-between;
+}
+.box-standard , .product-detail-content {
+    .modal.fade.show {
+        padding-top:50px;
+    }
+}
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+.quickviewvideoListing.rightTop {
+    position: absolute;
+    transform: translate(4px, 24px);
+    z-index: 1;
+}
+
+.quickviewvideoListing.leftTop {
+    position: absolute;
+    z-index: 1;
+    right: 21px;
+    top: 41px;
+}
+.product-image-wrapper {
+    position: relative;
+}
+
+.listingProductVideoBottom {
+    position: absolute;
+    top: 0%;
+    transform: translate(10px, 155px);
+}
+
+.cms-element {
+    position: relative;
+}
+
+.quick-view-videorightTop {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 0;
+    transform: translate(-30px, 40px);
+}
+
+.quick-view-videoleftTop {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    transform: translate(125px, 32px);
+}
+.quick-view-videorightBottom {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    transform: translate(-30px, -27px);
+}
+.quick-view-videoleftBottom {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    bottom: 0;
+    transform: translate(126px, -27px);
+}
