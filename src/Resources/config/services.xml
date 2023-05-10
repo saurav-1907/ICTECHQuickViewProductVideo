@@ -12,7 +12,6 @@
 
         <!-- Subscriber -->
         <service id="ICTECHQuickViewProductVideo\Storefront\Subscriber\ProductPageSubscriber">
-<!--            <argument type="service" id="Acris\ProductDownloads\Components\ProductDownloadService"/>-->
             <argument type="service" id="media_folder.repository"/>
             <argument type="service" id="media.repository"/>
             <argument type="service" id="product_overview_video.repository"/>
@@ -20,7 +19,6 @@
         </service>
 
         <service id="ICTECHQuickViewProductVideo\Storefront\Subscriber\ListingCriteria">
-            <!--            <argument type="service" id="Acris\ProductDownloads\Components\ProductDownloadService"/>-->
             <argument type="service" id="media_folder.repository"/>
             <argument type="service" id="media.repository"/>
             <argument type="service" id="product_overview_video.repository"/>

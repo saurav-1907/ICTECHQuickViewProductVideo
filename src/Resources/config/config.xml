@@ -41,11 +41,6 @@
                     <name>Right-Top</name>
                     <name lang="de-DE">Rechts-Oben</name>
                 </option>
-                <option>
-                    <id>rightBottom</id>
-                    <name>Right-Bottom</name>
-                    <name lang="de-DE">Rechts-Unten</name>
-                </option>
             </options>
         </input-field>
     </card>

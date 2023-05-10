@@ -37,11 +37,6 @@ Component.extend('overview-product-media-form', 'sw-product-media-form', {
         };
     },
 
-   /* created() {
-        this.createdComponent();
-        console.log('quickViewProductVideo', this)
-        this.repositoryAddMedia = this.repositoryFactory.create('product_overview_video');
-    },*/
 
     computed: {
         ...mapState('swProductDetail', [
@@ -54,10 +49,6 @@ Component.extend('overview-product-media-form', 'sw-product-media-form', {
             return this.repositoryFactory.create('product_overview_video');
         },
 
-        /*mediaRepository() {
-            return this.repositoryFactory.create('media');
-        },*/
-
         overViewVideoMediaUploadTag() {
             return this.product.id + '-product-overview-video';
         },
@@ -68,10 +59,8 @@ Component.extend('overview-product-media-form', 'sw-product-media-form', {
 
         overViewVideoMediaDefaultFolderCriteria() {
             const criteria = new Criteria(1, 1);
-
             criteria.addAssociation('folder');
             criteria.addFilter(Criteria.equals('entity', 'product'));
-
             return criteria;
         },
     },
@@ -89,28 +78,6 @@ Component.extend('overview-product-media-form', 'sw-product-media-form', {
             this.overViewVideoMediaDefaultFolderId = mediaDefaultFolderId;
         });
     },
-
-        /*productOverviewVideo: {
-
-            get() {
-                console.log("this.product?.extensions?.productOverviewVideo",this.product);
-                console.log("dsa", this.product);
-                return this.product?.extensions?.productOverviewVideo[0] || {};
-            },
-
-            set(values) {
-                if (!this.product.extensions.productOverviewVideo) {
-                    const collection = new EntityCollection(
-                        this.overViewVideoRepository.route,
-                        this.overViewVideoRepository.entityName,
-                        Shopware.Context.api
-                    )
-                    this.$set(this.product.extensions, 'productOverviewVideo', collection)
-                }
-            }
-        }*/
-
-
 
     methods: {
 
@@ -211,97 +178,67 @@ Component.extend('overview-product-media-form', 'sw-product-media-form', {
         onAddOverViewVideoMedia() {
             this.mediaRepository
                 .get(this.overViewVideo.thumbnailId, Context.api).then((entity) => {
-
                 entity.customFields = {
                     pv_is_overview_video: true,
                     pv_url: this.overViewVideo.url,
                     pv_source: this.overViewVideo.source
                 };
-
                 this.overViewVideo = {
                     url: '',
                     source: 'youtube',
                     thumbnailId: ''
                 }
-
                 this.$emit('add-overView-video-media', entity);
             });
         },
     },
 
-        /*openMediaSidebar() {
-            this.$refs.mediaSidebarItem.openContent();
-        },*/
+    loadMediaPreview(mediaId) {
+        if (!mediaId) return
+        this.mediaRepository.get(mediaId).then((response) => {
+            this.quickViewProductVideo = mediaId;
+        });
+    },
 
-        createdComponent() {
-            console.log("dsa", this.product);
-          /*  const proId = this.product.id;
-            const $criteria = new Criteria();
-            $criteria.addFilter(Criteria.equals('productId', this.$route.params.id));
-            this.overViewVideoRepository.search($criteria, Shopware.Context.api).then((updatePrice) => {
-                console.log('updatePrice', updatePrice)
-                this.product.extensions.productOverviewVideo = updatePrice;
-            });*/
-        },
-        loadMediaPreview(mediaId) {
-            if (!mediaId) return
-            this.mediaRepository.get(mediaId).then((response) => {
-                console.log('mediaId', mediaId)
-                console.log('response', response)
-                this.quickViewProductVideo = mediaId;
-            });
-        },
-
-     async   setMediaItem({ targetId }) {
+    async   setMediaItem({ targetId }) {
           await  this.loadMediaPreview(targetId)
-            console.log('this.quickViewProductVideo', this.quickViewProductVideo)
-            console.log('this', targetId)
             if (!this.product.extensions.productOverviewVideo) {
                 this.product.extensions.productOverviewVideo = this.overViewVideoRepository.create()
             }
             this.product.extensions.productOverviewVideo.productId = this.product.id
             this.product.extensions.productOverviewVideo.mediaId = targetId
-        },
+     },
 
-        onClickEditDomain(domain) {
-            this.product = domain;
-            this.setCurrentDomainBackup(this.product);
-            if (this.product.extensions.productOverviewVideo) {
-                this.loadMediaPreview(this.product.extensions.productOverviewVideo.mediaId)
-            }
-        },
+    onClickEditDomain(domain) {
+        this.product = domain;
+        this.setCurrentDomainBackup(this.product);
+        if (this.product.extensions.productOverviewVideo) {
+            this.loadMediaPreview(this.product.extensions.productOverviewVideo.mediaId)
+        }
+    },
 
-        onCloseCreateDomainModal() {
-            this.resetCurrentDomainToBackup();
-            this.product = null;
-            this.quickViewVideo = null
-        },
+    onCloseCreateDomainModal() {
+        this.resetCurrentDomainToBackup();
+        this.product = null;
+        this.quickViewVideo = null
+    },
 
-        onUnlinkLogo() {
-            if (this.product.extensions.productOverviewVideo) {
-                this.product.extensions.productOverviewVideo.mediaId = null
-            }
-            this.quickViewVideo = null
-        },
+    onUnlinkLogo() {
+        if (this.product.extensions.productOverviewVideo) {
+            this.product.extensions.productOverviewVideo.mediaId = null
+        }
+        this.quickViewVideo = null
+    },
 
-        onMediaSelectionChange(mediaItems) {
-            const media = mediaItems[0];
-            if (!media) {
-                return;
-            }
+    onMediaSelectionChange(mediaItems) {
+        const media = mediaItems[0];
+        if (!media) {
+            return;
+        }
 
-            this.mediaRepository.get(media.id).then((updatedMedia) => {
-                this.product.mediaId = updatedMedia.id;
-                this.product.media = updatedMedia;
-            });
-        },
-
-        /*onSetMediaItem({ targetId }) {
-            this.mediaRepository.get(targetId).then((updatedMedia) => {
-                this.product.mediaId = targetId;
-                this.product.media = updatedMedia;
-            });
-        },*/
-
-
+        this.mediaRepository.get(media.id).then((updatedMedia) => {
+            this.product.mediaId = updatedMedia.id;
+            this.product.media = updatedMedia;
+        });
+    },
 });

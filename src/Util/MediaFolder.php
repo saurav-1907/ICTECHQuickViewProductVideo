@@ -64,7 +64,6 @@ class MediaFolder
         try {
             $this->mediaFolderRepository->create($mediaFolder, $context);
         } catch (UniqueConstraintViolationException $exception) {
-            dump($exception);
         }
     }
 
@@ -82,7 +81,6 @@ class MediaFolder
         try {
             $this->mediaDefaultFolderRepository->create($mediaDefaultFolder, $context);
         } catch (UniqueConstraintViolationException $exception) {
-            dump($exception);
         }
         return $mediaDefaultFolderId;
     }
@@ -92,7 +90,6 @@ class MediaFolder
     {
         $deleteMediaFolderCriteria = new Criteria();
         $deleteMediaFolderCriteria->addFilter(new EqualsFilter('name', 'QuickView Product Videos'));
-
         $deleteMediaFolderId = $this->mediaFolderRepository->search($deleteMediaFolderCriteria, $context)->getEntities()->first()->getId();
         $deleteDefaultMediaFolderCriteria = new Criteria();
         $deleteDefaultMediaFolderCriteria->addFilter(new EqualsFilter('entity', 'product_overview_video'));
