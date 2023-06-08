@@ -1,9 +1,22 @@
 {
     "quickview-product": {
-            "video": {
-                "cardTitle" :"Upload Product Video",
-                "productVideo":"Upload Video",
-                "successTitle": "Success"
+        "video": {
+            "cardTitle": "Upload Product Video",
+            "productVideo": "Upload Video",
+            "successTitle": "Success"
+        },
+        "solid-product-media-form": {
+            "upload": {
+                "title": "Upload"
+            },
+            "embed": {
+                "title": "Embed video",
+                "url": "Video url",
+                "url-help-text": "Please make sure to only use urls which just contain the video id and no other properties (e.g. https://www.youtube.com/watch?v=aBc123xYz)",
+                "source": "Video source",
+                "thumbnail": "Thumbnail",
+                "add": "Add to list"
             }
+        }
     }
 }

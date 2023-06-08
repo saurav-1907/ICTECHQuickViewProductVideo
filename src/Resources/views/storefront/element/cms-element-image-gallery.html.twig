@@ -16,7 +16,29 @@
     {% endif %}
     {% set quickViewVideoPDPActivate = config('ICTECHQuickViewProductVideo.config.productdetailpageActive') %}
     {% set video = page.product.extensions.productOverviewVideo.media.url %}
-    {% if active == "true" and  video != null   %}
+    {% set videoUrl = page.product.extensions.productOverviewVideo.videoUrl %}
+    {% set media = searchMedia([sliderConfig.media.value], context.context) %}
+
+    {% if page.product.extensions.productOverviewVideo.media.mimetype == "text/html" %}
+        {% set replace_value_var= 'https://www.youtube.com/watch?v=' %}
+        {% set replace_with_value_var = 'https://www.youtube.com/embed/' %}
+    {% endif %}
+    {% if 'https://www.youtube.com/watch?v=' in videoUrl %}
+
+
+        {% set twig_content_variable= videoUrl%}
+        {% set replace_value_var= 'https://www.youtube.com/watch?v=' %}
+        {% set replace_with_value_var = 'https://www.youtube.com/embed/' %}
+    {% elseif 'https://vimeo.com/' in videoUrl %}
+
+        {% set twig_content_variable= videoUrl%}
+        {% set replace_value_var= 'https://vimeo.com/' %}
+        {% set replace_with_value_var = 'https://player.vimeo.com/video/' %}
+    {% elseif video != null %}
+        {% set twig_content_variable= video %}
+    {% endif %}
+
+    {% if (active == "true") and (quickViewVideoPDPActivate == "true") and (videoUrl != null or video != null)  %}
         <!-- Button trigger modal -->
         <div class="quick-view-video{{ overVideoButton }}">
             <button type="button" data-toggle="modal" data-target="#exampleModal"  class="btn btn-primary quickviewvideo {{ overVideoButton }}" id="quickviewvideo" name="quickviewvideo" value="quickviewvideo"
@@ -27,16 +49,17 @@
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content productquickviewvideo">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                <div class="modal-content productquickviewvideoListing">
+
                     <div class="modal-body">
                         <div class="videoShowModal">
-                            <video controls src="{{ page.product.extensions.ProductOverviewVideo.media.url }}" class="mt-4 quickviewvideoModel" >
-                            </video>
+                            <button type="button" class="close mb-2" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                            <iframe class="quickViewVideoUrl"
+                                    src="{{ twig_content_variable|replace({ (replace_value_var): replace_with_value_var }) }}">
+                            </iframe>
                         </div>
                     </div>
                 </div>

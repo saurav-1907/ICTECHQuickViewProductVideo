@@ -3,6 +3,25 @@
     {% parent %}
     <sw-card
         class="" :title="$tc('quickview-product.video.cardTitle')" :isLoading="isLoading">
+
+        <sw-text-field
+            v-if = "this.product.extensions.productOverviewVideo"
+            v-model = "this.product.extensions.productOverviewVideo.videoUrl"
+            name="overViewVideoUrl"
+            class="sw-cms-el-config-youtube-video__video-id"
+            :label="$tc('sw-cms.elements.vimeoVideo.config.label.videoId')"
+            :placeholder="$tc('sw-cms.elements.vimeoVideo.config.placeholder.videoId')"
+            @input = "overViewVideoUrl"
+        />
+
+        <sw-text-field
+            v-else
+            name="overViewVideoUrl"
+            class="sw-cms-el-config-youtube-video__video-id"
+            :label="$tc('sw-cms.elements.vimeoVideo.config.label.videoId')"
+            :placeholder="$tc('sw-cms.elements.vimeoVideo.config.placeholder.videoId')"
+            @input = "overViewVideoUrl"
+        />
         <sw-upload-listener
             :upload-tag="mediaUploadTag"
             auto-upload
@@ -15,7 +34,7 @@
             :upload-tag="mediaUploadTag"
             :file-accept="fileAccept"
             :default-folder="overViewVideoRepository.entityName"
-            :source="quickViewProductVideo"
+            :source="product.extensions?.productOverviewVideo?.media"
             :label="$t('quickview-product.video.productVideo')"
             @media-upload-sidebar-open="showMediaModal = true"
             @media-upload-remove-image="onUnlinkLogo">
@@ -25,7 +44,8 @@
             <sw-media-modal-v2
                 v-if="showMediaModal"
                 :allow-multi-select="false"
-                :entity-context="product.getEntityName()"
+                :entity-context="overViewVideoRepository.entityName"
+                :file-accept="fileAccept"
                 @media-modal-selection-change="onMediaSelectionChange"
                 @modal-close="showMediaModal = false"
             />

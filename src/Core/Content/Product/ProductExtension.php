@@ -6,14 +6,19 @@ use ICTECHQuickViewProductVideo\Core\Content\ProductOverviewVideo\ProductOvervie
 use Shopware\Core\Content\Product\ProductDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityExtension;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\CascadeDelete;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Inherited;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToOneAssociationField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\OneToManyAssociationField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\OneToOneAssociationField;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 
 class ProductExtension extends EntityExtension
 {
     public function extendFields(FieldCollection $collection): void
     {
-        $collection->add((new ManyToOneAssociationField('productOverviewVideo', 'id', ProductOverviewVideoDefinition::class, 'product_id'))->addFlags(new CascadeDelete()));
+        $collection->add(
+            new OneToOneAssociationField('productOverviewVideo','id','product_id',ProductOverviewVideoDefinition::class)
+        );
     }
 
     public function getDefinitionClass(): string

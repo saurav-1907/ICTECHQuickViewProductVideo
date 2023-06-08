@@ -17,9 +17,14 @@ class ProductOverviewVideoEntity extends Entity
     protected $id;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $mediaId;
+
+    /**
+     * @var string|null
+     */
+    protected $videoUrl;
 
     /**
      * @var string
@@ -34,7 +39,7 @@ class ProductOverviewVideoEntity extends Entity
     /**
      * @var ProductEntity|null
      */
-    protected $products;
+    protected $product;
 
     /**
      * @var \DateTimeInterface
@@ -56,14 +61,24 @@ class ProductOverviewVideoEntity extends Entity
         $this->id = $id;
     }
 
-    public function getMediaId(): string
+    public function getMediaId(): ?string
     {
         return $this->mediaId;
     }
 
-    public function setMediaId(string $mediaId): void
+    public function setMediaId(?string $mediaId): void
     {
         $this->mediaId = $mediaId;
+    }
+
+    public function getVideoUrl(): ?string
+    {
+        return $this->videoUrl;
+    }
+
+    public function setVideoUrl(?string $videoUrl): void
+    {
+        $this->videoUrl = $videoUrl;
     }
 
     public function getProductId(): string
@@ -86,14 +101,14 @@ class ProductOverviewVideoEntity extends Entity
         $this->media = $media;
     }
 
-    public function getProducts(): ?ProductEntity
+    public function getProduct(): ?ProductEntity
     {
-        return $this->products;
+        return $this->product;
     }
 
-    public function setProducts(?ProductEntity $products): void
+    public function setProduct(?ProductEntity $product): void
     {
-        $this->products = $products;
+        $this->product = $product;
     }
 
     public function getCreatedAt(): \DateTimeInterface

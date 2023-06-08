@@ -1,33 +1,22 @@
 {
-    "product": {
-        "card":{
-                "cardTitle": "Informationen zur Aktualisierung des Produktpreises"
+    "quickview-product": {
+        "video": {
+            "cardTitle": "Upload Product Video",
+            "productVideo": "Upload Video",
+            "successTitle": "Success"
         },
-        "date": {
-            "validFrom": "Gültig ab",
-            "endFrom": "Gültig bis"
-        },
-        "price": {
-            "gross": "Neupreis (brutto)",
-            "net": "Neupreis (netto)"
-        },
-        "switch": {
-            "week" : "Für jedes Wochenende"
-        },
-        "productWeekHelpText": {
-            "label": "Product numbers help you identify and manage your products. To achieve this, try and keep a consistent structure in your product numbers. You can define product number templates in {link}.",
-            "linkText": "settings"
-        },
-        "updateprice": {
-            "cardTitle" :"Produktpreis aktualisieren",
-            "grossPrice": "Bruttopreis",
-            "netPrice": "Nettopreis",
-            "startDate": "Gültig ab",
-            "endDate": "Gültig bis",
-            "status" : "Status",
-            "priceDelete": "löschen",
-            "successTitle": "Erfolg",
-            "successMessage": "Erfolgreich gelöscht"
+        "solid-product-media-form": {
+            "upload": {
+                "title": "Upload"
+            },
+            "embed": {
+                "title": "Embed video",
+                "url": "Video url",
+                "url-help-text": "Please make sure to only use urls which just contain the video id and no other properties (e.g. https://www.youtube.com/watch?v=aBc123xYz)",
+                "source": "Video source",
+                "thumbnail": "Thumbnail",
+                "add": "Add to list"
+            }
         }
     }
 }

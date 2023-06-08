@@ -1,17 +1,20 @@
 .productquickviewvideo {
-    width:800px;
+    width:100%;
 }
 .productquickviewvideoListing {
-    width:800px;
+    width:100%;
 }
 .quickviewvideoModel {
     width:768px;
 }
 .quickviewvideoModelListing {
-    width:768px;
+    width:100%;
 }
 
 .videoShowModal {
+    width:100%
+}
+.quickviewvideoModelTag {
     width:100%
 }
 .videoShowModalListing {
@@ -26,29 +29,78 @@
         padding-top:50px;
     }
 }
-@media (min-width: 576px) {
+
+@media (max-width: 576px) {
     .modal-dialog {
         max-width: 800px;
         margin: 0 auto;
     }
 }
+.modal-dialog {
+    max-width: 800px;
+    margin: 0 auto;
+}
+@media (max-width: 768px) {
+    .modal-dialog {
+        margin: 0 auto;
+    }
+    .quickviewvideo.leftBottom {
+        transform: translate(120px,-21px) !important;
+    }
+    .quickviewvideo.rightTop {
+        transform: translate(-27px, 5px) !important;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .quickviewvideo.rightTop {
+        transform: translate(-25px, 5px) !important;
+    }
+}
+
+@media (max-width: 425px) {
+
+    .quickviewvideo.leftBottom {
+        transform: translate(25px, -21px) !important;
+    }
+    .quickviewvideo.leftTop {
+        transform: translate(25px, 5px) !important;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .quickviewvideo.leftTop {
+        transform: translate(24px, 5px) !important;
+    }
+    .quickviewvideo.leftBottom {
+        transform: translate(25px, -21px) !important;
+    }
+}
 .quickviewvideoListing.rightTop {
     position: absolute;
-    transform: translate(4px, 24px);
     z-index: 1;
+    right: 0;
+    transform: translate(-21px, 5px)
 }
 
 .quickviewvideoListing.leftTop {
     position: absolute;
+    transform: translate(5px, 5px);
     z-index: 1;
-    right: 21px;
-    top: 41px;
+}
+
+.quickviewvideoListing.leftBottom {
+    position: absolute;
+    transform: translate(5px,-60px);
+    z-index: 1;
 }
 .product-image-wrapper {
     position: relative;
 }
 
-.listingProductVideoBottom {
+.listingProductVideoBottom.leftBottom {
     position: absolute;
     top: 0%;
     transform: translate(10px, 155px);
@@ -58,32 +110,30 @@
     position: relative;
 }
 
-.quick-view-videorightTop {
+.quickviewvideo.rightTop {
     position: absolute;
     z-index: 1;
     right: 0;
     top: 0;
-    transform: translate(-30px, 40px);
+    transform: translate(-26px, 5px);
 }
 
-.quick-view-videoleftTop {
+.quickviewvideo.leftTop {
     position: absolute;
     z-index: 1;
     left: 0;
     top: 0;
-    transform: translate(125px, 32px);
+    transform: translate(119px, 5px);
 }
-.quick-view-videorightBottom {
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    bottom: 0;
-    transform: translate(-30px, -27px);
-}
-.quick-view-videoleftBottom {
+.quickviewvideo.leftBottom {
     position: absolute;
     z-index: 1;
     left: 0;
     bottom: 0;
-    transform: translate(126px, -27px);
+    transform: translate(120px, -21px);
 }
+.quickViewVideoUrl {
+    width: 100%;
+    height: 500px;
+}
+

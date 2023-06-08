@@ -3,6 +3,7 @@
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
     <card>
         <title>Basic configuration</title>
+        <title lang="de-DE">Grundlegende Konfiguration</title>
         <input-field type="bool">
             <name>active</name>
             <label>Active</label>
@@ -12,7 +13,7 @@
     </card>
     <card>
         <title>Configration for Product Listing Page</title>
-
+        <title lang="de-DE">Konfigration für Produktlistenseite</title>
         <input-field type="bool">
             <name>productlistingpageActive</name>
             <label>Active</label>
@@ -22,9 +23,9 @@
 
         <input-field type="single-select">
             <name>productlistingpage</name>
-            <label>Product Listing page</label>
-            <label lang="de-DE">Produktlisting-Seite</label>
-                <defaultValue>rightTop</defaultValue>
+            <label>Position of Icon on Product Listing Page</label>
+            <label lang="de-DE">Position des Symbols auf der Produktauflistungsseite</label>
+            <defaultValue>rightTop</defaultValue>
             <options>
                 <option>
                     <id>leftTop</id>
@@ -47,7 +48,7 @@
 
     <card>
         <title>Configration for Product Detail Page</title>
-
+        <title lang="de-DE">Konfigration für Produkt-Detailseite</title>
         <input-field type="bool">
             <name>productdetailpageActive</name>
             <label>Active</label>
@@ -57,8 +58,8 @@
 
         <input-field type="single-select">
             <name>productdetailpage</name>
-            <label>Product Detail Page</label>
-            <label lang="de-DE">Produkt-Detailseite </label>
+            <label>Position of Icon on Product Detail Page</label>
+            <label lang="de-DE">Position des Symbols auf der Produkt-Detailseite </label>
             <defaultValue>rightTop</defaultValue>
             <options>
                 <option>
@@ -75,11 +76,6 @@
                     <id>rightTop</id>
                     <name>Right-Top</name>
                     <name lang="de-DE">Rechts-Oben</name>
-                </option>
-                <option>
-                    <id>rightBottom</id>
-                    <name>Right-Bottom</name>
-                    <name lang="de-DE">Rechts-Unten</name>
                 </option>
             </options>
         </input-field>

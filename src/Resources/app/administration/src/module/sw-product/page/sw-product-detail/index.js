@@ -22,6 +22,7 @@ Component.override('sw-product-detail', {
     },
 
     props: {
+
         productId: {
             type: String,
             required: false,
@@ -36,6 +37,7 @@ Component.override('sw-product-detail', {
 
     data() {
         return {
+            isSaveSuccessful: false,
             bundle: null,
             overviewId: null,
         };
@@ -49,6 +51,7 @@ Component.override('sw-product-detail', {
         productCriteria() {
             const criteria = this.$super('productCriteria');
             criteria.addAssociation('productOverviewVideo');
+            // criteria.addAssociation('productOverviewVideo.media');
             return criteria;
         },
         mediaRepository() {
@@ -81,13 +84,21 @@ Component.override('sw-product-detail', {
             customCriteria.addSorting(Criteria.sort('createdAt', 'DESC'));
             customCriteria.addFilter(Criteria.equals('productId', productId ));
             this.repository.search(customCriteria, Shopware.Context.api).then((entity) => {
+                this.log('entity', entity)
                 this.bundle = entity;
             });
         },
 
+        async onSave() {
+            this.$super('onSave');
+            this.repository.save(this.product.extensions.productOverviewVideo, Shopware.Context.api).then(() => {
+                this.getBundle();
+            });
+            this.isSaveSuccessful = true;
+        },
 
         Finish() {
-            this.isSaveSuccessful = false;
+            this.isSaveSuccessful = true;
         },
     }
 

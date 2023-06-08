@@ -16,7 +16,8 @@ class Migration1682681766product_overview_video extends MigrationStep
     {
         $connection->executeStatement("CREATE TABLE `product_overview_video` (
     `id` BINARY(16) NOT NULL,
-    `media_id` BINARY(16) NOT NULL,
+    `media_id` BINARY(16) NULL,
+    `video_url` VARCHAR(255) NULL,
     `product_id` BINARY(16) NOT NULL,
     `product_version_id` BINARY(16) NOT NULL,
     `created_at` DATETIME(3) NOT NULL,
