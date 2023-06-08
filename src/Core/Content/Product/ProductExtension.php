@@ -17,7 +17,7 @@ class ProductExtension extends EntityExtension
     public function extendFields(FieldCollection $collection): void
     {
         $collection->add(
-            new OneToOneAssociationField('productOverviewVideo','id','product_id',ProductOverviewVideoDefinition::class)
+            new OneToOneAssociationField('productOverviewVideo', 'id', 'product_id', ProductOverviewVideoDefinition::class)
         );
     }
 
